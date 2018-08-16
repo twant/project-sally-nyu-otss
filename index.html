@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>A-Frame DOM Manipulation</title>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/archilogic-com/aframe-gblock/6498b71d/dist/gblock.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.2.0/dist/aframe-physics-system.min.js"></script>
+</head>
+
+  <body>
+      <!--beginning of the 3D scene!-->
+      <a-scene id="scene" physics="debug: false">
+          <a-assets id="assets">
+              <img id="walls" src="images/kittenwallpaper.jpg">
+              <img id="floor" src="images/floor.jpg">
+              <img id="window" src="images/window.jpg">
+              <a-asset id="cat1" src="https://poly.google.com/view/3NujIPTNqDP"></a-asset>
+              <a-asset id="cat2" src="https://poly.google.com/view/6dM1J6f6pm9"></a-asset>
+              <a-asset id="cat3" src="https://poly.google.com/view/4fb-oMr2uUF"></a-asset>
+              <a-asset id="fish" src="https://poly.google.com/view/aEyLrUMMoUK"></a-asset>
+              <a-asset id="plate" src="https://poly.google.com/view/49wTfRxadBY"></a-asset>
+              <a-asset id="plant1" src="https://poly.google.com/view/2ag6_uuqsnb"></a-asset>
+              <audio id="meow" src="sounds/meow.mp3"></audio>
+          </a-assets>
+
+          <!--the cursor allows us to click on things! It has to move with the camera, which has to be inside of an a-entity tag.-->
+          <a-entity>
+              <a-camera id="camera" position="0 0 0">
+                  <a-cursor></a-cursor>
+              </a-camera>
+          </a-entity>
+          
+          <!--- Floor ---->
+          <a-plane static-body position="0 0 0" rotation="-90 0 0" width="8" height="8" src="#floor"></a-plane>
+
+          <!--- Walls ---->
+          <a-plane static-body position="4 2 0" rotation="0 -90 0" width="8" height="4" src="#walls"></a-plane>
+          <a-plane static-body position="-4 2 0" rotation="0  90 0" width="8" height="4" src="#walls"></a-plane>
+          <a-plane static-body position="0 2 -4" rotation="0 0 0" width="8" height="4" src="#walls"></a-plane>
+          <a-plane static-body position="0 2 4" rotation="180 0 0" width="8" height="4" src="#walls"></a-plane>
+
+          <!-- Window. -->
+          <a-box position="0 2 4" depth=".01" height="2.8" width="5" src="#window"></a-box>
+          
+          <!--- Tray ----->
+          <a-entity static-body id="food-tray" gblock="#plate" position="-0.5 -1.2 -1" scale="1.1 1.1 1.1"> </a-entity>
+         
+          
+          <!--- Cats ---->
+          <a-entity>
+            <a-entity dynamic-body="mass: 5; shape: auto" class="cat" scale=".5 .5 .5" position="-.72 0 -1.06" gblock="#cat1" id="OG kitten"></a-entity>
+          </a-entity>
+          
+          <a-entity>
+            <a-entity dynamic-body="mass: 3; shape: auto" class="cat" scale="0.01 .01 .01" position="0 .418 0" gblock="#cat2" id="ugly cat"></a-entity>
+          </a-entity>
+          
+          <a-entity>
+             <a-entity dynamic-body="mass: 8; shape: auto" class="cat" scale=".1 .1 .1" position="-.42 .008 1.149" gblock="#cat3" id="jaguar"></a-entity>
+          </a-entity>
+          
+          <a-entity>
+            <a-entity static-body scale=".2 .2 .2" position="2.89 0 2.886" gblock="#plant1" id="plant"></a-entity>
+          </a-entity>
+         
+         
+          <a-sky color="#d1e2ff" radius="8"></a-sky>
+            
+            <!--sets the lighting for the scene-->
+          <a-light type="ambient" color="#445451"></a-light>
+          <a-light type="point" intensity="1" position="0 2 3.5"></a-light>
+      </a-scene>
+      <script type="text/javascript" src="script.js"></script>
+  </body>
+
+</html>
